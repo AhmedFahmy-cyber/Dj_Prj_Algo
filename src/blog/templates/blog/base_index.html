@@ -1,0 +1,674 @@
+{% load static %}
+{% load post_tag %}
+<!DOCTYPE html>
+
+<html lang="ar">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% if title %}
+    <title>مدونة | {{title}}</title>
+    {% else %}
+    <title>مدونة</title>
+    {% endif %}
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
+    <link rel="shortcut icon" href="{% static 'blog/images/favicon.ico' %}">
+    <style>
+        html,
+        body {
+            height: 100%;
+            font-family: "Raleway", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        ul,
+        li,
+        ol {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            line-height: 1.2;
+            font-weight: 400;
+            font-family: "Cormorant Garamond", serif;
+            text-transform: uppercase;
+        }
+
+        .navbar {
+            background-image: url("{% static 'blog/algo (2).jpg' %}");
+            background-size: cover;
+            text-align: right;
+            background-repeat: no-repeat;
+            background-position: left;
+            padding: 20px 5px;
+            direction: rtl;
+            transition: 1s ease-in-out;
+            z-index: 1;
+            width: 100%;
+            /* height: 150px; */
+        }
+
+        .navbar .navbar-nav {
+            padding-left: 12px;
+        }
+
+        .navbar .navbar-nav .active,
+        .navbar .navbar-nav .nav-item:hover {
+            position: relative;
+        }
+
+        .navbar .navbar-nav .active::after,
+        .navbar .navbar-nav .nav-item:hover::after {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -10px;
+            width: 5px;
+            height: 5px;
+            background: #2196f3;
+            content: "";
+            margin: 0 auto;
+            border-radius: 50%;
+            transition: all, 0.3s;
+        }
+
+        .navbar .navbar-toggler {
+            background-color: #2196f3;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 1.25rem;
+            margin-left: 10px;
+        }
+
+        .navbar .dropdown-item {
+            color: #2196f3;
+            text-align: left;
+            margin-top: 20px;
+            transition: all 0.5s ease;
+            font-weight: 600;
+        }
+
+        @media only screen and (max-width: 992px) {
+            .navbar .dropdown-item {
+                text-align: right;
+            }
+        }
+
+        .navbar .dropdown-item:hover {
+            background-color: transparent !important;
+            color: #e01a4f !important;
+            transform: scale(1.1, 1.1);
+        }
+
+        .navbar .dropdown-menu {
+            padding: 0;
+            border: none;
+            background-color: transparent !important;
+        }
+
+        .navbar .nav-link {
+            font-size: 20px;
+            color: #2196f3 !important;
+            transition: all 0.5s ease;
+            font-weight: 800;
+        }
+
+        .navbar .nav-link:hover {
+            color: #e01a4f !important;
+            transform: scale(1.1, 1.1);
+        }
+
+        .imggg {
+            width: 100%;
+
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+
+
+        /* .btn {
+    font-size: 20px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    background: #a3a698;
+    margin: 40px 0;
+  }
+  .btn:hover {
+    color: #ffffff;
+  } */
+
+        /* .our {
+            text-align: center;
+            padding: 150px 0;
+        }
+
+        .our:hover {
+            box-shadow: 0px 5px 39px rgba(154, 87, 87, 0.2);
+        }
+
+        .our p {
+            color: #000;
+            font-size: 18px;
+            margin-top: 20px;
+        } */
+
+        /* .our img {
+            border-radius: 15px;
+            box-shadow: 0px 5px 39px rgba(154, 87, 87, 0.2);
+            height: 400px;
+            width: 100%;
+            transition: all 0.5s ease;
+            box-shadow: -5px -5px 41px #2196f3, 3px 5px 5px #e01a4f;
+        }
+
+        .our img:hover {
+            transform: scale(1.1, 1.1);
+            box-shadow: 0px 5px 39px rgba(149, 193, 211, 0.2);
+        }
+
+        .vedio {
+            border: 2px solid#2196F3;
+            border-radius: 5px;
+            padding: 5px;
+            box-shadow: -5px -5px 41px #2196f3, 3px 5px 5px #e01a4f;
+        } */
+        .btn {
+            background-color: #11b7e6;
+            color: #fff;
+            text-align: center;
+            margin-top: -100px;
+            padding: 10px 30px;
+            font-family: Cairo, sans-serif;
+
+            -webkit-tap-highlight-color: transparent;
+            font-size: 14px;
+            line-height: 1.42857143;
+            direction: rtl;
+            text-align: center;
+            box-sizing: border-box;
+
+            font-family: Cairo, sans-serif;
+
+
+
+        }
+
+
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!--Start Navbar-->
+        <!-- <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-light">
+            <a class="navbar-brand mb-4" href="#">
+                <img src="{% static 'blog/images/alger.png' %}" alt="شعار مدونة" width="100px">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" style="height: 146px; width: 1349px;" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link mr-4" href="{% url 'home' %}">الرئيسية <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            التصنيفات
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for category in category_list %}
+                            <a class="dropdown-item" href="/category/{{category.name}}">
+                                {{category.name}}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'formm' %}">انضم الينا </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'adminapp' %}">الادمن </a>
+                    </li>
+                </ul>
+
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'new_post' %}">تدوينة جديدة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">الملف الشخصي</a></li>
+                    <li class="nav-item ml-4"><a class="nav-link" href="{% url 'logout' %}">تسجيل خروج</a></li>
+                </ul>
+                {% else %}
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">تسجيل دخول</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">تسجيل</a></li>
+                </ul>
+                {% endif %}
+
+
+            </div>
+        </nav> -->
+        <!--End Navbar-->
+
+
+        <nav id="nav" class="navbar navbar-expand-lg navbar-light">
+            <!-- <div class="container"> -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class=""><i class="fas fa-bars"></i>
+                </span>
+            </button>
+            <div class=" justify-content-end" id="navbarNavAltMarkup">
+            </div>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#">الرئيسية <span class="sr-only">(current)</span>
+                    </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            التصنيفات
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for category in category_list %}
+                            <a class="dropdown-item" href="/category/{{category.name}}">
+                                {{category.name}}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                    </a>
+                    <a class="nav-item nav-link" href="{% url 'formm' %}">
+                        إنضم إلينا
+                    </a>
+                    <a class="nav-item nav-link" href="{% url 'adminapp' %}">
+                        الأدمن
+                    </a>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                {% if user.is_authenticated %}
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url 'new_post' %}">تدوينة جديدة
+                    </a>
+                    <a class="nav-item nav-link" href="{% url 'profile' %}">الملف الشخصي
+                    </a>
+                    <a class="nav-item nav-link" href="{% url 'logout' %}"> تسجيل الخروج
+                    </a>
+                    {% else %}
+                    <a class="nav-item nav-link" href="{% url 'login' %}"> تسجيل دخول
+                    </a>
+                    <a class="nav-item nav-link" href="{% url 'register' %}">تسجيل
+                    </a>
+                </div>
+                {% endif %}
+
+            </div>
+            <a class="navbar-brand" href="#"><img src="{% static 'blog/images/alger.png' %}" width="80px"></a>
+
+            <!-- <a class="nav-item nav-link" href="#"><i class="fas fa-search"></i></a> -->
+        </nav>
+        </div>
+
+        <!-- ==========
+        end nav
+        ========== -->
+
+    </header>
+
+    <section class="mb-4">
+        <div class="container-fluid">
+            <marquee class="tex">
+                <h2>تنظيم تظاهرة جيل الرقمنة الرقمنة الجزائري
+
+                    2020 بمبادرة من المؤسسة الناشئة "قيديني" للتجارة الإلكترونية </h2>
+            </marquee>
+            <div class="row mt-4">
+                <div class="card col-md-3">
+                    {% block content %}
+
+                    {% endblock content %}
+                </div>
+                <div class="col-md-8 ">
+                    <div class="card banner mb-3 ">
+                        <img class="img-fluid border m-2 text-center imggg"
+                            style="height:300px; box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;"
+                            src="{% static 'blog/images/home-1.jpg' %}" alt="صورة الناشر">
+                        <div class="text-center">
+                            <button class="btn"><a href="{% url 'formm' %}" class="join-us">سجل اهتمامك!</a></button>
+                        </div>
+                    </div>
+                    <br><br><br><br><br><br>
+                    <div class="card banner mb-3 ">
+                        <iframe class="vedio" width="100%" height="400" src="https://www.youtube.com/embed/yIlRBBeEGFk"
+                            frameborder="0" allow="accelerometer;
+                        autoplay; encrypted-media; gyroscope;
+                        picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <br><br><br><br><br><br>
+                    <div class="card mb-3 ">
+                        <img class=" img-fluid border m-2 text-center imggg"
+                            style=" height:500px; box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;"
+                            src="{% static 'blog/images/1_o.jpg' %}" alt="صورة الناشر">
+
+                    </div>
+                    <h3 class="text-center bg-light text-dark p-2 mt-4 "
+                        style="box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;"> المرفق العمومي
+                        الجواري:
+
+                    </h3>
+                    <p style="line-height:2.3;"><br>جمع و نقل و معالجة النفايات المنزلية
+
+                    </p>
+                    <p>النقل و التنقل الحضري)ااشارات المرور,الحظائر,مراقبة الحركة المرورية,الطرق(</p>
+                    <p>تسيير مختلف الشبكات)المياه,الكهرباء,الغاز,الهاتف(</p>
+                    <p>تسيير المنشات الثقافية)قاعات السينما,المكتبات و المراكز الثقافية)و الدينيةالمساجد</p>
+                    <p>فضاءات الرياضة و التسلية</p>
+                    <p>الصحة الجوارية:قاعات العلاج</p>
+                    <p>نشاطات المساعدة الاجتماعية</p>
+
+                    <br><br><br><br><br><br>
+                    <div class="card mb-3">
+                        <img class="img-fluid border  text-center imggg"
+                            style=" height:500px; box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;"
+                            src="{% static 'blog/images/2_o.jpg' %}" alt="صورة الناشر">
+
+                    </div>
+                    <h3 class="text-center bg-light text-dark p-2 mt-4"
+                        style="box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;">
+                        العنونة و المعلومة الجيوفضائية
+
+                    </h3>
+                    <p>تحديد الفضاءات الآهلة)الطرق,مداخل السكنات,الأماكن,المؤسسات و المباني العمومية,نقاط الاهتمام و
+                        الأماكن المسماة(</p>
+                    <p>المعالجة الرقمية لمعطيات العناوين</p>
+                    <p>اعطاء معطيات جغرافية لنقاط العناوين و العكس</p>
+                    <p>استغلال قاعدة المعطيات الخرائطية</p>
+                    <p>تطبيقات البحث و تحديد الأماكن</p>
+                    <p>كيفيات تزويد و استغلال المرجع الوطني للعنونة.</p>
+                    <br><br><br><br><br><br>
+                    <div class="card mb-3 ">
+                        <img class="img-fluid border m-2 text-center imggg"
+                            style=" height:500px; box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;"
+                            src="{% static 'blog/images/3_o.jpg' %}" alt="صورة الناشر">
+
+                    </div>
+                    <h3 class="text-center bg-light text-dark p-2 mt-4"
+                        style="box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;">
+                        رقمنة الخدمات العمومية:
+
+                    </h3>
+                    <p>رقمنة و عصرنة مختلف الاجراءات الادارية)الحالة المدنية,تسليم مختلف التراخيص و
+                        الاعتمادات,الشباك و
+                        البوابة الافتراضية(</p>
+                    <p>استعمال تكنولوجيات الاعلام و الاتصال في تسيير و متابعة و تقييم الخدمات العمومية)المدارس
+                        الابتدائية,المطاعم المدرسية(</p>
+                    <p>رقمنة تسيير ميزانية و محاسبة الجماعات المحلية</p>
+                    <p>-الحلول الذكية لتسييرو تثمين أملاك الجماعات المحلية</p>
+                    <p>تسيير الجباية المحلية</p>
+
+                    <br><br><br><br><br><br>
+                    <div class="card mb-3">
+                        <img class="img-fluid border  text-center imggg"
+                            style=" height:500px; box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;"
+                            src="{% static 'blog/images/4_o.jpg' %}" alt="صورة الناشر">
+
+                    </div>
+                    <h3 class="text-center bg-light text-dark p-2 mt-4"
+                        style="box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;">
+                        الطاقات المتجددة و البيئة:
+
+                    </h3>
+                    <p>-ترشيد الاستهلاك الطاقوي</p>
+                    <p>التسيير الذكي للانارة العمومية</p>
+                    <p>الاقتصاد الدائري</p>
+                    <p>-التسيير المتكامل للنفايات</p>
+                    <p>-تدابير للتقليل من انبعاثات الغازات المسببة للاحتباس الحراري</p>
+                    <p>مراقبة المحطات الشمسية</p>
+                    <p>متابعة المخططات الخضراء الحضرية للولاية</p>
+                    <p>مراقبة الاستهلاك الطاقوي لأملاك البلدية</p>
+                    <p>-المحطات الشمسية خارج الشبكة</p>
+                    <p>التسيير المتكامل للماء</p>
+
+                    <br><br><br><br><br><br>
+
+
+
+
+                    <div class="card cardd mb-3">
+                        <img class="img-fluid border m-2 text-center imggg"
+                            style=" height:500px; box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;"
+                            src="{% static 'blog/images/5_o.jpg' %}" alt="صورة الناشر">
+
+                    </div>
+                    <h3 class="text-center bg-light text-dark p-2 mt-4"
+                        style="box-shadow:5px 5px 25px 0 rgb(19 24 29);; border-radius: .375rem;">
+                        تهيئة و جاذبية الاقليم
+
+                    </h3>
+
+                    <p>تسيير الأقطاب و المدن الجديدة</p>
+                    <p>تعزيز امكانيات الأقاليم</p>
+                    <p>تسيير المخاطر الكبرى</p>
+
+
+                    <br><br><br><br><br><br>
+
+
+                    <h3 class="text-center bg-secondary text-light p-2">
+
+
+                        التوصيات المنبثقة عن الملتقى الدولي حول المؤسسات الناشئة Startup:
+
+                    </h3>
+                    <p>1- دعم المؤسسات الصغيرة و الناشئة من طرف وزارة المالية.</p>
+                    <p>2- حث القطاعات الوزارية و الجماعات الإقليمية و المؤسسات الاقتصادية على عمل شراكة مع المؤسسات
+                        الناشئة Startup و الشباب حاملي المشاريع المبتكرة. </p>
+                    <p>3- اتخاذ تدابير جبائية خاصة كحث المتعاملين الاقتصاديين و العموميين و الخواص للاستفادة من
+                        الحلول
+                        المبتكرة.</p>
+                    <p>4- تخصيص غلاف مالي في ميزانية 2020 في ميزانية الجماعات المحلية و التهيئة العمرانية لاقتناء
+                        حلول
+                        مبتكرة ذكية في مجال الخدمة العمومية.</p>
+                    <p>5- تحفيز القطاعات الوزارية على تطوير تطبيقات قابلة للإدماج في مجال بطاقة التعريف الوطنية و
+                        البيومترية على سبيل المثال .</p>
+                    <p>6- وضع آليات مركزية لمتابعة المشاريع المنجزة في إطار الشراكة بين الجماعات المحلية و المؤسسات
+                        الناشئة.</p>
+                    <p>7- حث الجماعات المحلية على توقيع اتفاقيات خبرة مع المؤسسات الناشئة المبتكرة .</p>
+                    <p>8- إطلاق مشروع الزبون الأول يسمح للمؤسسة الناشئة للحصول على صفقة أولى عبر الطلب العمومي.</p>
+                    <p>9- تحيين مدولة الاستثمار العمومي المخططات البلدية للتنمية ميزانية الولاية و البلدية عبر إدراج
+                        الحلول الجديدة المبتكرة.</p>
+                    <p>10- ادراج محور تدريب مختص لفائدة المؤسسات الناشئة</p>
+                    <p>11- برمجة إنشاء حاضنات مؤسسات على مستوى وزارة الداخلية و التهيئة العمرانية و كذا على مستوى
+                        الجماعات المحلية لاسيما الولايات قصد المساعدة على ظهور هذه المؤسسات
+                        الناشئة المختصة في مجال الخدمات العمومية ذات الأولوية لاسيما فيما تعلق ببطاقة التعريف
+                        الوطنية،
+                        الجباية المحلية - الميزانيات المحلية لتسيير النفايات - الإنارة العمومية.
+                    </p>
+                    <p>12- تنظيم دورات تكوينية لفائدة المؤسسات الناشئة و تدريب و حاضنات المؤسسات حول مواضيع تتعلق
+                        بالمرافق العمومية الجوارية و يجب أن تهتم هذه الدورات التكوينية على مستوى الإدارة المحلية و
+                        المؤسسات العمومية ذات الطابع الاقتصادي و التجاري المكلفة بتسيير المرافق العمومية و تطوير
+                        حلولها
+                        في ظروف سانحة. </p>
+                    <p>13- إحياء دور حاضنات المؤسسات في مجال تطوير و مرافقة المؤسسات الناشئة.</p>
+                    <p>14- التعاون الدولي و تبادل الخبرات :تثمين الاستفادة من خبرات النخبة المهاجرة و الجالية
+                        بالخارج و
+                        مرافقة المؤسسات الناشئة.</p>
+                    <p>15- إدراج محور Startup و الابتكار في اتفاقيات و بروتوكولات التعاون الثنائي و المشترك سواء في
+                        الاتحاد الأوروبي ’ الاتحاد الإفريقي و اتحاد دول المغرب العربي.</p>
+                    <p>16- إدراج محور ترقية Startup في قيادة التعامل اللامركزي مع نظيرتها الأجنبية.</p>
+                    <p>17- تشجيع و دعم علاقات تعاون بين مؤسساتنا الجزائرية و نظيراتها الأجنبية </p>
+                    <p>18- استحداث مسابقة سنوية تحت اسم Startup of the yearموجهة للمؤسسات الناشئة الافريقة بغرض
+                        تحفيز
+                        هاته المؤسسات.</p>
+                    <h3 class="text-center">تحت الرعاية السامية لمعالي السيد الوزير الأول</h3>
+                    <h3 class="text-center"> وزارة الداخلية والجماعات المحلية والتهيئة العمرانية </h3>
+                    <h3 class="text-center">تنظـــــــــــــــــم</h3>
+                    <h3 class="text-center">الندوة الدولية لدعم المؤسسات الناشئة في مجال المرفق العمومي</h3>
+                    <h3 class="text-center">السبت 16 نوفمبر 2019</h3>
+                    <h3 class="text-center"> المركز الدولي للمؤتمرات عبد اللطيف رحال</h3>
+                    <p>7 سا– 8 سا و30 د : استقبال وتسجيل المشاركين.</p>
+                    <p>- قاعة المحاضرات تيميمون -</p>
+                    <p>9سا– 9 سا و20 د : الكلمة الافتتاحية لمعالي السيد وزير الداخلية والجماعات المحلية والتهيئة
+                        العمرانية.</p>
+                    <p>09 ساو20 د- 10 سا و25 د :مداخلات الخبراء.</p>
+                    <p>.السيد رياض حرثاني (خبير دولي) : دور المؤسسات الناشئة في تطوير الاقتصاد الجزائري (10 دقائق)،
+                    </p>
+                    <p>.السيد حميد بكلي (مدير كاب وورك CAPCOWORK حاضنة مشاريع متخصصة) : النظام البيئي للمؤسسات
+                        الناشئة
+                        ودور حاضنات المؤسسات في تحسين الخدمات العمومية في الجزائر (10 دقائق) </p>
+                    <p>- عرض للأرضية الرقمية الديناميكية التي وضعتها وزارة الداخلية والجماعات المحلية والتهيئة
+                        العمرانية
+                        لفائدة المؤسسات الناشئة( مداخلة السيد محمد جعفر برهان إطار بالوزارة)،</p>
+                    <p>.السيد ديدييهنوكيكيمفورا : مسؤول التكنولوجيا والابتكار "إفريقيا الذكية" : دور المؤسسات
+                        الناشئة
+                        وحاضنات المؤسسات في المدن الذكية بإفريقيا(10 دقائق)،</p>
+                    <p>.السيد فاتح وزاني : رئيس شبكة الجزائريين خريجي المدارس الكبرى : الجالية المقيمة بالخارجة،
+                        داعم
+                        استراتيجي للانفتاح الدولي للنظام البيئي للمؤسسات الناشئة الجزائرية. (10 دقائق)،</p>
+                    <p>.السيد علقمة مسعود :خبير في البرمجة والتجهيزات الرقمية (الشركة الألمانية بوش) : الجزائر في
+                        قلب
+                        التحولات التكنولوجية. (10 دقائق)،</p>
+                    <p> ساو25 د– 11 سا :استراحة قهوة</p>
+                    <p> سا– 12 سا و30 د :أشغال الورشات الموضوعاتية.</p>
+                    <p>· الورشة 1 :المرفق العام الجواري (قاعة الأوراس)،</p>
+                    <p>· الورشة 2 : العنونة والمعلومة الجيوفضائية (قاعة البابور)،</p>
+                    <p>· الورشة 3: رقمنة الخدمات العمومية (قاعة جرجرة)،</p>
+                    <p>· الورشة 4 : الطاقة المتجددة والبيئة (قاعة ورسنيس)،</p>
+                    <p> الورشة 5 : تهيئة وجاذبية الإقليم ، تسيير المخاطر الكبرى والمدن الجديدة (قاعة الهقار)،</p>
+                    <p>12 سا و30 د- 13 سا و45 د : استراحة الغداء.</p>
+                    <p>13 سا و45 د– 15 سا 45 د : استئناف أشغال الورشات</p>
+                    <p class="text-center">- قاعة المحاضرات تيميمون– </p>
+                    <p>15 سا 45 د – 16 سا :قراءة توصيات الورشات.</p>
+                    <p>16 سا– 16 سا و25 د : إمضاء مذكرات تفاهم بين مؤسسات ناشئة والجماعات المحلية.</p>
+                    <p>16 سا و 25 د - 16 سا و30 د : توزيع رمزي لمقررات منح محلات تجارية لفائدة مؤسسات ناشئة.</p>
+                    <p>16 سا 30 د – 16 سا و 35 د : الكلمة الختامية لمعالي السيد وزير الداخلية والجماعات المحلية
+                        والتهيئة
+                        العمرانية</p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-secondary">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md">
+                    <div class="card-group mt-3">
+                        <div class="card m-3">
+                            <h3 class="card-title text-center border-bottom p-2 m-3">من نحن</h3>
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img src="{% static 'blog/images/alger.png' %}" alt="شعار مدونة" width="100px">
+                                </div>
+                                <p>
+
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="card m-3">
+                            <h3 class="card-title text-center border-bottom p-2 m-3">مواقع هامة</h3>
+                            <div class="card-body">
+                                <ul>
+                                    <li><a class="text-dark" #">وثائق بايثون</a></li>
+                                    <li><a class="text-dark" href="#">وثائق
+                                            دجانجو</a></li>
+                                    <li><a class="text-dark" href="#">توثيق MDN</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card m-3">
+                            <h3 class="card-title text-center border-bottom p-2 m-3">وسائل التواصل الاجتماعي</h3>
+                            <h4 class="card-body text-center">
+                                <a class="text-secondary" href=""><i class="fab fa-facebook"></i></a>
+                                <a class="text-secondary" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="text-secondary" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="text-secondary" href=""><i class="fab fa-youtube"></i></a>
+                                <a class="text-secondary" href=""><i class="fab fa-telegram"></i></a>
+                                <a class="text-secondary" href=""><i class="fab fa-linkedin"></i></a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md text-center">
+                    <small class="text-light">&copy; جميع الحقوق محفوظة {% now 'Y' %}</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'blog/js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'blog/js/popper.min.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/js/fontawesome-all.min.js' %}"></script>
+    <script src="{% static 'blog/jquery.js' %}"></script>
+    <script src="{% static 'blog/jquery.backstretch.js' %}"></script>
+    <!-- <script>
+
+        $(".navbar").backstretch("{% static 'blog/algo.jpg' %}");
+    </script> -->
+    <script>
+        //hideen navbar& showdefrintnavbar in 500px scroll
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function () {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("nav").style.top = "0";
+                document.getElementById("nav").style.background = "";
+                document.getElementById("nav").style.position = 'static'
+
+            } else {
+                document.getElementById("nav").style.top = "0";
+                document.getElementById("nav").style.background = " rgba(1, 1, 1, 0.8)";
+                document.getElementById("nav").style.position = 'fixed';
+
+            }
+            prevScrollpos = currentScrollPos;
+        }
+
+    </script>
+</body>
+
+</html>
