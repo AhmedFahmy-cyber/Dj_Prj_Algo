@@ -1,7 +1,6 @@
 from django import forms
 from .models import Comment, Post
 
-
 class NewComment(forms.ModelForm):
     class Meta:
         model = Comment
@@ -11,10 +10,15 @@ class NewComment(forms.ModelForm):
 class PostCreateForm(forms.ModelForm):
     title = forms.CharField(label='عنوان التدوينة')
     content = forms.CharField(label='نص التدوينة', widget=forms.Textarea)
+    image = forms.ImageField(label='اختار صوره للموضوع ')
 
     class Meta:
         model = Post
-        fields = ['title', 'content' , 'category']
+        fields = ['title', 'content' , 'category','image',]
+
+
+
+
 
 
 class DateInput(forms.DateInput):
@@ -23,8 +27,18 @@ class DateInput(forms.DateInput):
     
 
 class RegsForm(forms.Form):
+    
+    # def clean_companyName(self):
+        
+    #     companyName = self.cleaned_data.get('companyName')
+    #     if (companyName == ""):
+    #         raise forms.ValidationError('This field can not be left blank')
+    #     return companyName
 
     
+
+
+
     companyName = forms.CharField(max_length=50,
                                   widget=forms.TextInput(attrs=
                                                           {'class':'form-control' , 

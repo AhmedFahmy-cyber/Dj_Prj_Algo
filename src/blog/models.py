@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
-
+from PIL import Image
 
 
 class Category(models.Model):
@@ -17,7 +17,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     category=models.ForeignKey(Category , on_delete=models.PROTECT , default=1)
-
+    image = models.ImageField(default='default.jpg', upload_to='posts_pics')
     content = models.TextField()
     post_date = models.DateTimeField(default=timezone.now)
     post_update = models.DateTimeField(auto_now=True)
@@ -29,6 +29,15 @@ class Post(models.Model):
     def get_absolute_url(self):
         # return '/detail/{}'.format(self.pk)
         return reverse('detail', args=[self.pk])
+        
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+        if img.width > 300 or img.height > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)    
 
     class Meta:
         ordering = ('-post_date', )

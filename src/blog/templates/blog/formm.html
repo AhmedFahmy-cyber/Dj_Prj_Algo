@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-
+{% load crispy_forms_tags %}
 
 
 <form method="POST" action="#" novalidate="">
@@ -20,6 +20,7 @@
                     {{form.companyName}}
 
                     <div class="alert alert-danger" hidden="">هذا الحقل إ</div>
+
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="creationDate">تاريخ الإنشاء</label>
@@ -170,11 +171,9 @@
             </div>
 
         </div>
-        <input class="btn btn-secondary py-2 mb-3" type="submit" value="تسجيل">
+        <input class="btn-1 btn btn-primary py-2 mb-3" type="submit" value="تسجيل">
 
     </div>
 </form>
-<div class="form-group btn-editing">
-    <a class="btn btn-secondary" href="#">لوحه الادمن</a>
-</div>
+
 {% endblock content %}

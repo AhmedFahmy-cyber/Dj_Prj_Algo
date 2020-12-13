@@ -11,6 +11,19 @@ from django.http import HttpResponse
 def home(request):
     posts = Post.objects.all()
 
+    
+    context = {
+        'title': 'الصفحة الرئيسية',
+        'posts': posts,
+        
+    }
+    return render(request, 'blog/index.html', context)
+
+
+    # All Posts function
+def allposts(request):
+    posts = Post.objects.all()
+
     paginator = Paginator(posts, 5)
     page = request.GET.get('page')
     try:
@@ -20,11 +33,13 @@ def home(request):
     except EmptyPage:
         posts = paginator.page(paginator.num_page)
     context = {
-        'title': 'الصفحة الرئيسية',
+        'title': 'موضوعات متنوعه ',
         'posts': posts,
         'page': page,
     }
-    return render(request, 'blog/index.html', context)
+    return render(request, 'blog/all_posts.html', context)
+
+# End Of All Posts function
 
 
 # Application Form
@@ -53,7 +68,7 @@ def formm(request):
             
             appregister.save()
 
-        return redirect('home')
+        return redirect('formm')
 
         
     context = {
@@ -195,8 +210,18 @@ class CatListView(ListView):
 def category_list(request):
 
     category_list = Category.objects.all()
+    paginator = Paginator(category_list, 5)
+    page = request.GET.get('page')
+    try:
+        category_list = paginator.page(page)
+    except PageNotAnInteger:
+        category_list = paginator.page(1)
+    except EmptyPage:
+        category_list = paginator.page(paginator.num_page)
+
     context = {
         "category_list": category_list,
+        'page': page,
     }
     return context    
 
@@ -216,7 +241,8 @@ def applist(request , app_id):
         'applicationId': applicationId
     }
         
-    return render(request, 'blog/application_detail.html',context)     
+    return render(request, 'blog/table_data.html',context)     
+    # return render(request, 'blog/application_detail.html',context)     
     # return render(request, 'blog/app_list.html',context)     
 
 def admin_list(request):

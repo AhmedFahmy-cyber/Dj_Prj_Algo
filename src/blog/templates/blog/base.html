@@ -15,67 +15,396 @@
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
     <link rel="shortcut icon" href="{% static 'blog/images/favicon.ico' %}">
+    <style>
+        <style>* {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            font-family: "Cairo", sans-serif;
+            background-color: #f0f5f8;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        p {
+            margin-bottom: 40px;
+            width: fit-content;
+            font-size: 20px;
+            color: black;
+        }
+
+        @media (print),
+        (prefers-reduced-motion: reduce) {
+            .animated {
+                -webkit-animation-duration: 1ms !important;
+                animation-duration: 1ms !important;
+                -webkit-transition-duration: 1ms !important;
+                transition-duration: 1ms !important;
+                -webkit-animation-iteration-count: 1 !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+
+        .btn-1 {
+            background-color: #384ceb;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .btn-2 {
+            color: #ffffff;
+            padding: 10px 45px !important;
+            border: 1px solid #ffffff;
+            transition: 1s;
+            background-color: #384ceb;
+            border-radius: 20px;
+            z-index: 1000;
+            opacity: 1;
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn-2:hover {
+            color: #384ceb;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+        }
+
+        .animation,
+        .card1 img:hover {
+            animation: shake 0.5s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translate(1px, 1px) rotate(0deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(-1deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(1deg);
+            }
+
+            30% {
+                transform: translate(3px, 2px) rotate(0deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-1px, 2px) rotate(-1deg);
+            }
+
+            60% {
+                transform: translate(-3px, 1px) rotate(0deg);
+            }
+
+            70% {
+                transform: translate(3px, 1px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translate(-1px, -1px) rotate(1deg);
+            }
+
+            90% {
+                transform: translate(1px, 2px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(1px, -2px) rotate(-1deg);
+            }
+        }
+
+        .glass {
+            position: absolute;
+            border: 3px solid #000;
+            border-radius: 50%;
+            cursor: none;
+            /*Set the size of the magnifier glass:*/
+            width: 100px;
+            height: 100px;
+        }
+
+        .slider {
+            margin-top: 70px;
+        }
+
+        .navbar {
+
+            background: #384ceb;
+            /* position: fixed; */
+            direction: rtl !important;
+            width: 100%;
+            border-bottom: 1px solid #ffffff;
+            z-index: 1000;
+        }
+
+        .navbar:hover {
+            background: #c2dce9;
+            transition: 1s;
+        }
+
+        .navbar .dropdown-menu {
+            background-color: #384ceb;
+            transition: 1s ease-in-out;
+        }
+
+        .navbar .dropdown-menu:hover {
+            background: #c2dce9;
+        }
+
+        .navbar .dropdown-menu .dropdown-item {
+            color: #ffffff;
+        }
+
+        .navbar .dropdown-menu .dropdown-item:hover {
+            background: transparent;
+            transition: 1s ease-in-out;
+            color: #384ceb;
+        }
+
+        .navbar .navbar-collapse {
+            align-items: center;
+            width: auto;
+        }
+
+        .navbar .navbar-toggler {
+            background-color: #ffffff;
+            border: 1px solid #384ceb;
+            box-shadow: inset;
+            outline: none !important;
+            box-shadow: none;
+        }
+
+        .navbar .navbar-toggler .icon {
+            color: #384ceb;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: #ffffff;
+            transition: 1s ease-in-out;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        .navbar .navbar-nav .nav-link:hover {
+            color: #384ceb;
+        }
+
+        .card1 {
+            padding: 100px 0;
+            text-align: center;
+            background-color: #f0f5f8;
+            transition: 0.8s;
+            box-shadow: 0px 3px 20px #c2dce9;
+        }
+
+        .card1 img {
+            border-radius: 15px;
+            transition: 0.8s;
+        }
+
+        p {
+            margin-bottom: 40px;
+            width: fit-content;
+            font-size: 20px;
+        }
+
+        .cart,
+        .cart1 {
+            position: relative;
+            display: none;
+            transition: 1s;
+            box-shadow: 0px 3px 20px #c2dce9;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .cart:hover,
+        .cart1:hover {
+            transform: scale(0.9);
+        }
+
+        .footer {
+            text-align: right;
+            background: #c2dce9;
+            color: #384ceb;
+            border-top: 8px solid #384ceb;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                text-align: left;
+            }
+        }
+
+        .footer #myinpu {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .footer h2 {
+            width: 100%;
+            font-size: 15px;
+            font-weight: bold;
+            margin-left: 5px;
+            margin-top: 20px;
+            color: #384ceb;
+        }
+
+        .footer h6 {
+            font-size: 14px;
+            margin-top: 15px;
+            text-align: left;
+            cursor: pointer;
+            margin-top: 20px;
+            color: #384ceb;
+            transition-duration: 1s;
+        }
+
+        .footer h6:hover {
+            color: #384ceb;
+        }
+
+        .footer .sochial {
+            margin-top: 30px;
+        }
+
+        .footer .sochial .fab {
+            background: #f0f5f8;
+            color: #384ceb;
+            padding: 18px;
+            border-radius: 50%;
+            margin: 10px;
+            transition: 1s ease-in-out;
+        }
+
+        .footer .sochial .fab:hover {
+            background: #ffffff;
+            color: #384ceb;
+            border: 1px solid #384ceb;
+            transform: rotateY(180deg);
+        }
+
+        .footer p {
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .footer p span:hover {
+            color: #384ceb;
+            transition-duration: 1s;
+        }
+
+        @media (print),
+        (prefers-reduced-motion: reduce) {
+            .animated {
+                -webkit-animation-duration: 1ms !important;
+                animation-duration: 1ms !important;
+                -webkit-transition-duration: 1ms !important;
+                transition-duration: 1ms !important;
+                -webkit-animation-iteration-count: 1 !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+
+        .text .btn {
+            position: fixed;
+            bottom: 10px;
+            right: -10px;
+            display: none;
+            color: #384ceb;
+            border: 0;
+        }
+
+        .text i {
+            text-align: center;
+            line-height: 50px;
+            text-align: center;
+            z-index: 1;
+            font-size: 70px;
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <!--Start Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="{% static 'blog/images/alger.png' %}" alt="شعار مدونة" width="30px">
-                مدونة</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <nav class="navbar navbar-expand-lg  text-uppercase">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon"><i class="fas fa-bars"></i></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'home' %}">الرئيسية <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            التصنيفات
+                <div class="collapse navbar-collapse justify-content-start" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="{% url 'home' %}">الرئيسية <span
+                                class="sr-only">(current)</span>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% for category in category_list %}
-                            <a class="dropdown-item" href="/category/{{category.name}}">
-                                {{category.name}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                التصنيفات
                             </a>
-                            {% endfor %}
-                        </div>
-                    </li>
-                    <li class="nav-item">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for category in category_list %}
+                                <a class="dropdown-item" href="/category/{{category.name}}">
+                                    {{category.name}}
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </li>
+
                         <a class="nav-link" href="{% url 'formm' %}">انضم الينا </a>
-                    </li>
+
+                        <a class="nav-item nav-link" href="{% url 'adminapp' %}">الأدمن</a>
 
 
+                    </div>
+                </div>
 
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                    {% if user.is_authenticated %}
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="{% url 'new_post' %}">تدوينة جديدة</a>
+                        <a class="nav-item nav-link" href="{% url 'allposts' %}"> جميــع الموضوعات</a>
+                        <a class="nav-item nav-link" href="{% url 'profile' %}">الملف الشخصي</a>
+                        <a class="nav-item nav-link" href="{% url 'logout' %}">تسجيل خروج</a>
+                        {% else %}
+                        <a class="nav-item nav-link" href="{% url 'login' %}">تسجيل دخول</a>
+                        <a class="nav-item nav-link" href="{% url 'register' %}">تسجيل</a>
+                    </div>
+                    {% endif %}
+                </div>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'adminapp' %}">الادمن </a>
-                    </li>
-
-                </ul>
-
-                {% if user.is_authenticated %}
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'new_post' %}">تدوينة جديدة</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">الملف الشخصي</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">تسجيل خروج</a></li>
-                </ul>
-                {% else %}
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">تسجيل دخول</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">تسجيل</a></li>
-                </ul>
-                {% endif %}
-
-
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="navbar-brand" href="#"><img class="img-fluid"
+                                src="{% static 'blog/images/alger.png' %}" width="70px" height="50px" alt="logo"></a>
+                    </div>
+                </div>
             </div>
         </nav>
+
         <!--End Navbar-->
     </header>
 
@@ -89,12 +418,12 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card mb-3">
-                        <h3 class="text-center bg-secondary text-light p-2">آخر التدوينات</h3>
+                        <h3 class="text-center btn-1 text-light p-2">آخر التدوينات</h3>
                         {% latest_posts %}
 
                     </div>
                     <div class="card mb-3">
-                        <h3 class="text-center bg-secondary text-light p-2">آخر التعليقات</h3>
+                        <h3 class="text-center btn-1 text-light p-2">آخر التعليقات</h3>
                         {% latest_comments %}
                     </div>
                 </div>
@@ -102,55 +431,68 @@
         </div>
     </section>
 
-    <footer class="bg-secondary">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md">
-                    <div class="card-group mt-3">
-                        <div class="card m-3">
-                            <h3 class="card-title text-center border-bottom p-2 m-3">من نحن</h3>
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="{% static 'blog/images/mim-logo.png' %}" alt="شعار مدونة" width="100px">
-                                </div>
-                                <p>
-                                    من نحن
-                                </p>
+    <!-- =====================
+           start footer
+     ====================== -->
 
-                            </div>
-                        </div>
-                        <div class="card m-3">
-                            <h3 class="card-title text-center border-bottom p-2 m-3">مواقع هامة</h3>
-                            <div class="card-body">
-                                <ul>
-                                    <li><a class="text-dark" href="#">وثائق بايثون</a></li>
-                                    <li><a class="text-dark" href="#">وثائق
-                                            دجانجو</a></li>
-                                    <li><a class="text-dark" href="#">توثيق MDN</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card m-3">
-                            <h3 class="card-title text-center border-bottom p-2 m-3">وسائل التواصل الاجتماعي</h3>
-                            <h4 class="card-body text-center">
-                                <a class="text-secondary" href=""><i class="fab fa-facebook"></i></a>
-                                <a class="text-secondary" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="text-secondary" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="text-secondary" href=""><i class="fab fa-youtube"></i></a>
-                                <a class="text-secondary" href=""><i class="fab fa-telegram"></i></a>
-                                <a class="text-secondary" href=""><i class="fab fa-linkedin"></i></a>
-                            </h4>
-                        </div>
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <h2>TOP LOCATION</h2>
+                    <h6>Lorem ipsum dolor</h6>
+                    <h6>Sit amet consectetur</h6>
+                    <h6>Adipisicing elit</h6>
+                    <h6>Eiusmod tempor</h6>
+                    <h6>Incididunt ut labore</h6>
+                </div>
+                <div class="col-sm-2">
+                    <h2>FEATURED BOATS</h2>
+                    <h6>Lorem ipsum dolor</h6>
+                    <h6>Sit amet consectetur</h6>
+                    <h6>Adipisicing elit</h6>
+                    <h6>Eiusmod tempor</h6>
+                </div>
+                <div class="col-lg-6">
+                    <h2>SUBSCRIBE TO OUR NEWSLETTER</h2>
+                    <!-- <div  class="serch">
+          <div class="serches input-group show mb-3">
+            <input id="myinpu" type="text" class="form-control" placeholder="your email adress"
+              aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <span class="input-group-text btn-1" id="basic-addon2">subscript</span>
+          </div>
+        </div> -->
+                    <div class='sochial'>
+                        <i class='fab fa-facebook-f'></i>
+                        <i class='fab fa-twitter'></i>
+                        <i class='fab fa-google-plus-g'></i>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h2>CONTACT US</h2>
+                    <h6>103, Lorem ipsum,</h6>
+                    <h6>Sit amet consectetur</h6>
+                    <h6>Adipisicing elit</h6>
+                    <h6>3823660,</h6>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="lead"> ALEXCODE <span>.pro</span></p>
+
                     </div>
                 </div>
             </div>
-            <div class="row p-2">
-                <div class="col-md text-center">
-                    <small class="text-light">&copy; جميع الحقوق محفوظة {% now 'Y' %}</small>
-                </div>
-            </div>
-        </div>
-    </footer>
+    </section>
+
+
+
+
+    <!-- end section -->
+
+    <!-- =====================
+       end footer
+ ====================== -->
+
 
     <script src="{% static 'blog/js/jquery-3.3.1.slim.min.js' %}"></script>
     <script src="{% static 'blog/js/popper.min.js' %}"></script>
